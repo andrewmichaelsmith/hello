@@ -111,6 +111,7 @@ class MessageUpdatesHandler(tornado.web.RequestHandler):
 
 
 def main():
+    logging.info("Starting hello app")
     parse_command_line()
     app = tornado.web.Application(
         [
