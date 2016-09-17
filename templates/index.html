@@ -13,8 +13,8 @@
       {% end %}
     </div>
     <div id="input">
-      <form action="/a/message/new" method="post" id="messageform">
-		<textarea type="text" name="body" id="message" placeholder="Say Hello"></textarea>
+     <form action="/a/message/new" method="post" id="messageform">
+		<input type="text" name="body" id="message" placeholder="Say Hello"></textarea>
         <input type="submit" value="{{ _("Post") }}">
         <input type="hidden" name="next" value="{{ request.path }}">
         {% module xsrf_form_html() %}

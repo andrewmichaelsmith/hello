@@ -33,16 +33,9 @@ $(document).ready(function() {
 
 function newMessage(form) {
     var message = form.formToDict();
-    var disabled = form.find("input[type=submit]");
-    disabled.disable();
     $.postJSON("/a/message/new", message, function(response) {
         updater.showMessage(response);
-        if (message.id) {
-            form.parent().remove();
-        } else {
-            form.find("input[type=text]").val("").select();
-            disabled.enable();
-        }
+        $('#message').val('');
     });
 }
 
@@ -69,20 +62,6 @@ jQuery.fn.formToDict = function() {
     }
     if (json.next) delete json.next;
     return json;
-};
-
-jQuery.fn.disable = function() {
-    this.enable(false);
-    return this;
-};
-
-jQuery.fn.enable = function(opt_enable) {
-    if (arguments.length && !opt_enable) {
-        this.attr("disabled", "disabled");
-    } else {
-        this.removeAttr("disabled");
-    }
-    return this;
 };
 
 var updater = {

@@ -17,6 +17,7 @@
 
 html, body {
   height: 100%;
+  margin: 0;
 }
 
 body, input {
@@ -26,10 +27,13 @@ body, input {
 
 #inbox {
   height: 90%;
+  overflow-wrap: break-word;
+  overflow: scroll;
 }
 
 #input {
   height: 10%;
+  vertical-align: top;
  }
 
 #message {
