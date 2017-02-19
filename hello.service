@@ -1,0 +1,15 @@
+[Unit]
+Description=Hello
+After=syslog.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/hello/
+ExecStart=/home/pi/hello/chatdemo.py
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
