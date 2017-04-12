@@ -1,0 +1,4 @@
+*.img
+*.zip
+*.qcow
+kernel-qemu
