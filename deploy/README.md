@@ -25,3 +25,8 @@ mv kernel-qemu-4.4.34-jessie?raw=true kernel-qemu
 sudo emulate_image.sh
 ```
 
+Write to SD:
+
+```
+sudo dd bs=4M if=raspbian-jessie-lite.img of=/dev/sdc
+```
