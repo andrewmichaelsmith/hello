@@ -75,6 +75,9 @@ mkdir -p ${ROOTFS_DIR}/etc/hostapd
 cp config/hostapd/hostapd.conf ${ROOTFS_DIR}/etc/hostapd/hostapd.conf
 sed -i 's^#DAEMON_CONF=""^DAEMON_CONF=/etc/hostapd/hostapd.conf^g' ${ROOTFS_DIR}/etc/default/hostapd
 
+#Setup dnsmasq config
+cp config/dnsmasq/dnsmasq.conf ${ROOTFS_DIR}/etc/dnsmasq.conf
+
 #Make journald persist between boots
 mkdir -p ${ROOTFS_DIR}/var/log/journal
 
