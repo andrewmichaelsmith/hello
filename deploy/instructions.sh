@@ -5,4 +5,6 @@ cd /opt/hello
 pip3 install -r requirements.txt
 systemctl enable hello
 
+systemctl enable ssh
+
 
