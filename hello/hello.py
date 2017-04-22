@@ -126,7 +126,10 @@ def main():
         )
 
     logging.info("Starting hello app")
-    app.listen(options.port)
+    app.listen(
+        options.port,
+        xheaders=True
+    )
     tornado.ioloop.IOLoop.current().start()
 
 
