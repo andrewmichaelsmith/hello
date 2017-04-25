@@ -24,6 +24,7 @@ import uuid
 from tornado.concurrent import Future
 from tornado import gen
 from tornado.options import define, options, parse_command_line
+from tornado.log import access_log
 
 define("port", default=8888, help="run on the given port", type=int)
 define("debug", default=False, help="run in debug mode")
@@ -83,6 +84,12 @@ class MessageNewHandler(tornado.web.RequestHandler):
             "id": str(uuid.uuid4()),
             "body": self.get_argument("body"),
         }
+        access_log.info(
+               "Message: '%s' (%s)",
+               self.get_argument("body")[0:80],
+               self.request.remote_ip
+       )
+
         # to_basestring is necessary for Python 3's json encoder,
         # which doesn't accept byte strings.
         message["html"] = tornado.escape.to_basestring(
@@ -110,9 +117,8 @@ class MessageUpdatesHandler(tornado.web.RequestHandler):
         global_message_buffer.cancel_wait(self.future)
 
 
-def main():
-    parse_command_line()
-    app = tornado.web.Application(
+def make_app(xsrf=True):
+    return tornado.web.Application(
         [
             (r"/", MainHandler),
             (r"/a/message/new", MessageNewHandler),
@@ -121,9 +127,14 @@ def main():
         cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
-        xsrf_cookies=True,
+        xsrf_cookies=xsrf,
         debug=options.debug,
         )
+
+def main():
+    parse_command_line()
+
+    app = make_app()
 
     logging.info("Starting hello app")
     app.listen(
