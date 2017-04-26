@@ -1,2 +1,5 @@
 general:
   build_dir: hello
+machine:
+  python:
+    version: python3
