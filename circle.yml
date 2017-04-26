@@ -2,4 +2,4 @@ general:
   build_dir: hello
 machine:
   python:
-    version: python3
+    version: python3.6.1
