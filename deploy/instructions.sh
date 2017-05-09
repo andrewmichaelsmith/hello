@@ -1,3 +1,4 @@
+apt-get update --fix-missing
 apt-get install -y hostapd dnsmasq nginx python3-pip
 /etc/init.d/nginx stop
 
