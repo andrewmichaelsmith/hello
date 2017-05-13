@@ -43,8 +43,8 @@ unmount ${ROOTFS_DIR}
 cp ${SOURCE} ${TARGET}
 mkdir -p ${ROOTFS_DIR}
 losetup -D
-losetup -f -P --show ${TARGET} 
-mount /dev/loop0p2 -o rw ${ROOTFS_DIR}
+LOOP_DEVICE=$(losetup -f -P --show ${TARGET})p2
+mount ${LOOP_DEVICE} -o rw ${ROOTFS_DIR}
 
 if [ -e ${ROOTFS_DIR}/etc/ld.so.preload ]; then
         mv ${ROOTFS_DIR}/etc/ld.so.preload ${ROOTFS_DIR}/etc/ld.so.preload.disabled
