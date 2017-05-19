@@ -26,8 +26,18 @@ from tornado import gen
 from tornado.options import define, options, parse_command_line
 from tornado.log import access_log
 
+from chatterbot import ChatBot
+
 define("port", default=8888, help="run on the given port", type=int)
 define("debug", default=False, help="run in debug mode")
+
+
+chatbot = ChatBot(
+    'Bill',
+    trainer="chatterbot.trainers.ChatterBotCorpusTrainer"
+)
+
+chatbot.train("chatterbot.corpus.english")
 
 
 class MessageBuffer(object):
@@ -84,6 +94,12 @@ class MessageNewHandler(tornado.web.RequestHandler):
             "id": str(uuid.uuid4()),
             "body": self.get_argument("body"),
         }
+
+        response = {
+            "id": str(uuid.uuid4()),
+            "body": chatbot.get_response(message['body']),
+        }
+
         access_log.info(
                "Message: '%s' (%s)",
                self.get_argument("body")[0:80],
@@ -94,6 +110,11 @@ class MessageNewHandler(tornado.web.RequestHandler):
         # which doesn't accept byte strings.
         message["html"] = tornado.escape.to_basestring(
             self.render_string("message.html", message=message))
+
+
+        message["html"] += tornado.escape.to_basestring(
+            self.render_string("message.html", message=response))
+
         if self.get_argument("next", None):
             self.redirect(self.get_argument("next"))
         else:
