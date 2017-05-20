@@ -1,5 +1,9 @@
 apt-get update --fix-missing
 apt-get install -y hostapd dnsmasq nginx python3-pip
+
+#hwclock
+sudo apt-get install -y python-smbus i2c-tools
+
 /etc/init.d/nginx stop
 
 cd /opt/hello

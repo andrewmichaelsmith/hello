@@ -78,6 +78,13 @@ sed -i 's^#DAEMON_CONF=""^DAEMON_CONF=/etc/hostapd/hostapd.conf^g' ${ROOTFS_DIR}
 #Setup dnsmasq config
 cp config/dnsmasq/dnsmasq.conf ${ROOTFS_DIR}/etc/dnsmasq.conf
 
+#Setup hwclock
+echo 'i2c-bcm2708' >> ${ROOTFS_DIR}/etc/modules
+echo 'i2c-dev' >> ${ROOTFS_DIR}/etc/modules
+echo 'rtc-ds1307' >> ${ROOTFS_DIR}/etc/modules
+echo 'dtparam=i2c_arm=on' >> ${ROOTFS_DIR}/boot/config.txt
+echo 'dtparam=i2s=on' >> ${ROOTFS_DIR}/boot/config.txt
+
 #Make journald persist between boots
 mkdir -p ${ROOTFS_DIR}/var/log/journal
 
