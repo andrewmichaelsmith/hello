@@ -103,9 +103,9 @@ class MessageNewHandler(tornado.web.RequestHandler):
         }
 
         access_log.info(
-               "Message: '%s' (%s)",
-               self.get_argument("body")[0:80],
-               self.request.remote_ip
+            "Message: '%s' (%s)",
+            self.get_argument("body")[0:80],
+            self.request.remote_ip
        )
 
         # to_basestring is necessary for Python 3's json encoder,
