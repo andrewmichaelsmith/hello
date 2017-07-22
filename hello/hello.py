@@ -95,9 +95,11 @@ class MessageNewHandler(tornado.web.RequestHandler):
             "body": self.get_argument("body"),
         }
 
+        chatbot_response = chatbot.get_response(message['body'])
+
         response = {
             "id": str(uuid.uuid4()),
-            "body": chatbot.get_response(message['body']),
+            "body": chatbot_response.text,
         }
 
         access_log.info(
