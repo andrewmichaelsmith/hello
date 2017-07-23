@@ -6,6 +6,7 @@ After=syslog.target
 Type=simple
 User=pi
 Group=pi
+Environment=NLTK_DATA=/opt/nltk_data/
 WorkingDirectory=/opt/hello
 ExecStart=/opt/hello/hello.py
 StandardOutput=syslog
