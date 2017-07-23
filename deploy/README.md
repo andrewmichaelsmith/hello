@@ -1,7 +1,7 @@
 Scripts to build a raspberry pi image with our hello code
 
 The intention is to add to the base raspberry pi image (at
-time of writing this is 2017-04-10-raspbian-jessie-lite.img)
+time of writing this is 2017-07-05-raspbian-jessie-lite.img)
 
 Dependencies:
 
@@ -10,9 +10,9 @@ Dependencies:
 Setup:
 
 ```
-wget https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-04-10/2017-04-10-raspbian-jessie-lite.zip
-unzip unzip 2017-04-10-raspbian-jessie-lite.zip
-sudo build_image.sh
+wget https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/2017-07-05-raspbian-jessie-lite.zip
+unzip 2017-07-05-raspbian-jessie-lite.zip
+sudo sh build_image.sh
 ```
 
 Emulation:
@@ -22,7 +22,7 @@ You can run the image with qemu (need to use this kernel)
 ```
 wget https://github.com/dhruvvyas90/qemu-rpi-kernel/blob/master/kernel-qemu-4.4.34-jessie?raw=true
 mv kernel-qemu-4.4.34-jessie?raw=true kernel-qemu
-sudo emulate_image.sh
+sudo sh emulate_image.sh
 ```
 
 Write to SD:

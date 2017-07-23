@@ -1,5 +1,5 @@
 ROOTFS_DIR=rpi_mnt
-SOURCE=2017-04-10-raspbian-jessie-lite.img
+SOURCE=2017-07-05-raspbian-jessie-lite.img
 TARGET=raspbian-jessie-lite.img
 
 on_chroot() {
